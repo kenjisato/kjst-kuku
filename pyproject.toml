@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "kjst-kuku"
+version = "0.1.0"
+description = ""
+authors = ["Kenji Sato <mail@kenjisato.jp>"]
+readme = "README.md"
+
+[tool.poetry.scripts]
+kjst-kuku = "kjst_kuku.main:app"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+typer = "^0.4.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

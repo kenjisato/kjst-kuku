@@ -19,7 +19,7 @@ def ask(x, y):
     try:
         a = int(input(f"{x} × {y} = "))
     except ValueError:
-        print("数字で答えよう\n")
+        typer.echo("数字で答えよう\n")
         a = ask(x, y)
     return a
 
@@ -37,9 +37,9 @@ def kuku(left, right, ordered):
             a = ask(_x, _y)
 
             if a == _x * _y:
-                print("正解!!\n")
+                typer.echo("正解!!\n")
             else:
-                print("不正解 (T_T)\n")
+                typer.echo("不正解 (T_T)\n")
                 wrong.append((_x, _y))
     
         mistake += len(wrong)
@@ -117,13 +117,13 @@ def start(left: str = typer.Argument("1-9",
     # Stopwatch stops.
     elapsed = sw.stop()
 
-    print("おわり!")
+    typer.echo("おわり!")
     if mistake == 0:
-        print("全問正解です！ 🏆")
+        typer.echo("全問正解です！ 🏆")
     else:
-        print(f"{mistake}回まちがえました。 😩")
+        typer.echo(f"{mistake}回まちがえました。 😩")
 
-    print(f"{round(elapsed, 1)}秒かかりました。")
+    typer.echo(f"{round(elapsed, 1)}秒かかりました。")
 
     # Write records
     left = repr_numbers(left)

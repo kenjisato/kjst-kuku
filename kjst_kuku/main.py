@@ -8,6 +8,8 @@ from datetime import datetime
 import typer
 
 from .util import parse_numbers, repr_numbers, graceful
+from .stopwatch import Stopwatch
+
 
 app = typer.Typer()
 
@@ -107,13 +109,13 @@ def start(left: str = typer.Argument("1-9",
     begin_time = datetime.now().strftime("%Y-%m-%d %H:%m")        
     
     # Stopwatch starts.
-    start = time.time()
+    sw = Stopwatch()
 
     # Main kuku drill.
     mistake = kuku(left, right, ordered)
 
     # Stopwatch stops.
-    elapsed = time.time() - start
+    elapsed = sw.stop()
 
     print("おわり!")
     if mistake == 0:

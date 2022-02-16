@@ -2,7 +2,6 @@ import sys
 import os
 import random
 import itertools 
-import time
 from datetime import datetime
 
 import typer
@@ -70,11 +69,22 @@ def log():
 
 
 @app.command()
-def graph():
+def graph(file: str = typer.Option("~/.kuku_record", "--file", "-f", 
+                                   help="Record file")):
     """
     Show graph
     """
-    typer.echo("Show graph. Not implemented yet.")
+    import pandas as pd
+    import plotly.express as px
+    file = os.path.expanduser(file)
+
+    csv = pd.read_csv(file)
+    csv["start"] = pd.to_datetime(csv.start)
+    csv["range"] = list(zip(csv.left, csv.right))
+    fig = px.line(csv, x="start", y="elapsed", color="range", 
+                  text="mistake", markers=True)
+    fig.update_traces(textposition="top center")
+    fig.show()
 
 
 @app.command()

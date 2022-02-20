@@ -78,9 +78,14 @@ def graceful(func):
     return wrapper
             
 
-def default_file():
+def on_ios():
+    """Detect a-Shell"""
     machine = platform.machine()
-    if machine.startswith("iPad") or machine.startswith("iPhone"):
+    return machine.startswith("iPad") or machine.startswith("iPhone")
+
+
+def default_file():
+    if on_ios():
         file = "~/Documents/kuku/record.txt"
     else:
         file = "~/.kuku/record.txt"

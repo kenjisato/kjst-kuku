@@ -6,7 +6,7 @@ from datetime import datetime
 
 import typer
 
-from .util import parse_numbers, repr_numbers, graceful, default_file
+from .util import parse_numbers, repr_numbers, graceful, default_file, on_ios
 from .stopwatch import Stopwatch
 
 
@@ -110,7 +110,8 @@ def start(left: str = typer.Argument("1-9",
     typer.echo(f"🎬 はんいは {left} ✕ {right}、全部で{len(left) * len(right)}問です。")
     
     while True:
-        key = input("😁 準備ができたらエンターキーをおしてください。\n😣 やめるときは Ctrl をおしながらエンター\n") 
+        note_for_ios = "iPad/iPhone はさらにエンター [↩] をおす。" if on_ios() else ""
+        key = input(f"😁 準備ができたらエンターキーをおしてください。\n😣 やめるときは Control [Ctrt] をおしながら C をおす。{note_for_ios}\n") 
         if key == "":
             typer.echo("Start!! \n")
             break

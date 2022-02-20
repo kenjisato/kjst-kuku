@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "kjst-kuku"
-version = "0.1.2"
+version = "0.1.3"
 description = ""
 authors = ["Kenji Sato <mail@kenjisato.jp>"]
 readme = "README.md"

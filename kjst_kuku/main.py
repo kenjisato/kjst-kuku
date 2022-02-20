@@ -6,7 +6,7 @@ from datetime import datetime
 
 import typer
 
-from .util import parse_numbers, repr_numbers, graceful
+from .util import parse_numbers, repr_numbers, graceful, default_file
 from .stopwatch import Stopwatch
 
 
@@ -69,7 +69,7 @@ def log():
 
 
 @app.command()
-def graph(file: str = typer.Option("~/.kuku_record", "--file", "-f", 
+def graph(file: str = typer.Option(default_file(), "--file", "-f", 
                                    help="Record file")):
     """
     Show graph
@@ -95,7 +95,7 @@ def start(left: str = typer.Argument("1-9",
             help="right operand. (Eg.) Single integer 1, Range 2-5, or Combined 3-4/8/7"),
           ordered: bool = typer.Option(False, "--order", "-o", 
             help="Do not shuffle."),
-          file: str = typer.Option("~/.kuku_record", "--file", "-f", 
+          file: str = typer.Option(default_file(), "--file", "-f", 
             help="File to save records.")):
     """
     掛け算ドリル

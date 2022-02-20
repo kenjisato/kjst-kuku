@@ -1,4 +1,6 @@
 import sys
+import os
+import platform
 from functools import wraps
 
 
@@ -75,3 +77,21 @@ def graceful(func):
         return out
     return wrapper
             
+
+def default_file():
+    machine = platform.machine()
+    if machine.startswith("iPad") or machine.startswith("iPhone"):
+        file = "~/Documents/kuku/record.txt"
+    else:
+        file = "~/.kuku/record.txt"
+    
+    dir = os.path.dirname(os.path.expanduser(file))
+    try:
+        os.makedirs(dir)
+    except FileExistsError:
+        pass 
+
+    return file
+
+    
+
